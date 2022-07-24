@@ -6,5 +6,9 @@ interface Props {
 }
 
 export default function PageContainer({ children }: Props) {
-  return <Center h="100vh">{children}</Center>;
+  return (
+    <Center h="100vh" bg={"gray.800"}>
+      {children}
+    </Center>
+  );
 }

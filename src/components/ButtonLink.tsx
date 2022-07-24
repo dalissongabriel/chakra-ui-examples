@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 type Props = ButtonProps & {
   navigateTo: string;
+  shouldLeftIcon?: Boolean;
 };
 
-const ButtonLink = ({ navigateTo, ...rest }: Props) => {
+const ButtonLink = ({ navigateTo, shouldLeftIcon = false, ...rest }: Props) => {
   const navigate = useNavigate();
 
   const handleNavigateTo = (route: string) => {
@@ -15,9 +16,15 @@ const ButtonLink = ({ navigateTo, ...rest }: Props) => {
 
   return (
     <Button
-      colorScheme={rest.colorScheme || "blue"}
-      leftIcon={rest.leftIcon || <IoIosArrowBack />}
-      width={rest.width || "140px"}
+      leftIcon={
+        rest.leftIcon ? (
+          rest.leftIcon
+        ) : shouldLeftIcon ? (
+          <IoIosArrowBack />
+        ) : (
+          <></>
+        )
+      }
       {...rest}
       onClick={() => handleNavigateTo(navigateTo)}
     >
